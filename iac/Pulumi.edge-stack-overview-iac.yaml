@@ -6,6 +6,8 @@ config:
     secure: v1:/tQyoIaD74dKvIX6:K1AWiNPt7Lzz/JNjreNNRRzuDSgS+JXrSaDs6qPXAjHtkg==
   edge-stack-overview-iac:acmeEmailTwo:
     secure: v1:6rGRa58INzJeefiv:xFE1DjDilxP3SI6167bFV+srnJdoSr9SaYNFg6U=
+  edge-stack-overview-iac:argoServerAdminPassword:
+    secure: v1:YoFI8N19vlU9+jBU:Q+TX5or7PuCgmWYJViTr6JgC3scJkxFMaGkse0clV4p5ZO+vQGDLx+KUr0Rb1D+tijC1loVtnl4GtcMC7PQ5TxGuKzOLgaIoz13D+AcdfQP/heMAVvsnzMcY1sWmt6SFOco1LQ==
   edge-stack-overview-iac:cloudConnectToken:
     secure: v1:Qut6Z+U6zBCMbFVE:4mmBpbb+flQPy9AAKBhj7y/ZVksrH26lVX9hjKZ5ny2ouDDZt2rrA3H66O0vZ8YONjHiwdL3YAeyu8jkkbS+rja1UdIpwwYaOkO53mZl7faLAYFMcsUX9ccosXRO9Kj9D1trk96grQR06Bm1HWfFkFmLhrA=
   edge-stack-overview-iac:cloudflareZoneId:
