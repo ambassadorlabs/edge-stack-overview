@@ -48,21 +48,8 @@ spec:
             runAsNonRoot: true
             runAsUser: 1000
             runAsGroup: 3000
-          image: "index.docker.io/thedevelopnik/es-overview-websvc:c001a56e3c5d57f61ff3c10e47ed13752f695bb3"
+          image: "index.docker.io/thedevelopnik/es-overview-websvc:a1b1b0a90e8cda1bc39a5b7f3840617bbff5058f"
           imagePullPolicy: Always
-          env:
-            - name: VUE_APP_CHATSVC_HOST
-              value: chatsvc.thedevelopnik.com
-            - name: VUE_APP_CHATSVC_SOCKET_PROTOCOL
-              value: wss://
-            - name: VUE_APP_CHATSVC_TCP_PROTOCOL
-              value: https://
-            - name: VUE_APP_USERSVC_HOST
-              value: usersvc.thedevelopnik.com
-            - name: VUE_APP_USERSVC_TCP_PROTOCOL
-              value: https://
-            - name: VUE_APP_BASE_URL
-              value: https://esdemo.thedevelopnik.com
           command:
             - web
           ports:

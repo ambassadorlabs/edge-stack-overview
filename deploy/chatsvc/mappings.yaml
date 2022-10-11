@@ -22,6 +22,7 @@ metadata:
 spec:
   hostname: chatsvc.thedevelopnik.com
   prefix: /ws
+  rewrite: /ws
   service: "chatsvc.default:3000"
   allow_upgrade:
     - websocket
