@@ -22,7 +22,7 @@ spec:
       steps:
         - setWeight: 100
         - pause:
-          duration: 10
+            duration: 10
   selector:
     matchLabels:
       app.kubernetes.io/name: usersvc
@@ -48,8 +48,8 @@ spec:
             runAsNonRoot: true
             runAsUser: 1000
             runAsGroup: 3000
-          image: "index.docker.io/thedevelopnik/es-overview-usersvc:latest"
-          imagePullPolicy: ALWAYS
+          image: "index.docker.io/thedevelopnik/es-overview-usersvc:d82ba9b8f07aeff63af1f31276a251f15b42ffb6"
+          imagePullPolicy: Always
           command:
             - web
           ports:

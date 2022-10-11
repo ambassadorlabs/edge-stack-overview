@@ -1,0 +1,13 @@
+---
+apiVersion: getambassador.io/v3alpha1
+kind:  Mapping
+metadata:
+  name:  usersvc-mapping
+  labels:
+    app.kubernetes.io/name: usersvc
+    app.kubernetes.io/instance: 0.1.0
+spec:
+  hostname: usersvc.thedevelopnik.com
+  prefix: /
+  service: "usersvc.default:4000"
+  resolver: endpoint

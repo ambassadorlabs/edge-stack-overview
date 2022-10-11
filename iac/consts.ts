@@ -1,2 +1,3 @@
-export const subdomain = 'esdemo'
-export const fullDomain = `${subdomain}.thedevelopnik.com`
+export const websvcSubdomain = 'esdemo'
+export const chatsvcSubdomain = 'chatsvc'
+export const usersvcSubdomain = 'usersvc'

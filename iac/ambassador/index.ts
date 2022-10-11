@@ -2,6 +2,7 @@ import * as k8s from '@pulumi/kubernetes'
 import * as helm from '@pulumi/kubernetes/helm'
 import * as cluster from '../cluster'
 import config from '../config'
+import * as ambassadorCRDs from '../crds/ambassador/index'
 
 const namespace = new k8s.core.v1.Namespace('ambassador', {
     metadata: {
@@ -26,9 +27,17 @@ export const chart = new helm.v3.Chart('ambassador', {
       agent: {
         cloudConnectToken: config.requireSecret('cloudConnectToken'),
       },
+      createDefaultListeners: true,
     }
   }
 }, { provider: cluster.provider, dependsOn: edgeStackCRDs })
 
 const ambassadorSvc = chart.getResource('v1/Service', 'ambassador/ambassador')
 export const publicIp = ambassadorSvc.status.loadBalancer.ingress[0].ip
+
+export const k8sEndpointResolver = new ambassadorCRDs.getambassador.v3alpha1.KubernetesEndpointResolver('endpoint', {
+  metadata: {
+    namespace: namespace.metadata.name,
+    name: 'endpoint',
+  },
+}, { provider: cluster.provider, dependsOn: chart })

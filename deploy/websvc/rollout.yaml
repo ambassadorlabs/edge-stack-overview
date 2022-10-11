@@ -22,7 +22,7 @@ spec:
       steps:
         - setWeight: 100
         - pause:
-          duration: 10
+            duration: 10
   selector:
     matchLabels:
       app.kubernetes.io/name: websvc
@@ -44,12 +44,25 @@ spec:
             capabilities:
               drop:
                 - ALL
-            readOnlyRootFilesystem: true
+            readOnlyRootFilesystem: false
             runAsNonRoot: true
             runAsUser: 1000
             runAsGroup: 3000
-          image: "index.docker.io/thedevelopnik/es-overview-websvc:latest"
-          imagePullPolicy: ALWAYS
+          image: "index.docker.io/thedevelopnik/es-overview-websvc:d82ba9b8f07aeff63af1f31276a251f15b42ffb6"
+          imagePullPolicy: Always
+          env:
+            - name: VUE_APP_CHATSVC_HOST
+              value: chatsvc.thedevelopnik.com
+            - name: VUE_APP_CHATSVC_SOCKET_PROTOCOL
+              value: wss://
+            - name: VUE_APP_CHATSVC_TCP_PROTOCOL
+              value: https://
+            - name: VUE_APP_USERSVC_HOST
+              value: usersvc.thedevelopnik.com
+            - name: VUE_APP_USERSVC_TCP_PROTOCOL
+              value: https://
+            - name: VUE_APP_BASE_URL
+              value: https://esdemo.thedevelopnik.com
           command:
             - web
           ports:
@@ -58,25 +71,25 @@ spec:
               protocol: TCP
           startupProbe:
             httpGet:
-              path: /health
+              path: /
               port: http
             failureThreshold: 10
-            periodSeconds: 6
+            periodSeconds: 20
             timeoutSeconds: 1
             successThreshold: 1
           readinessProbe:
             httpGet:
-              path: /health
+              path: /
               port: http
-            initialDelaySeconds: 18
+            initialDelaySeconds: 30
             periodSeconds: 3
             failureThreshold: 2
             timeoutSeconds: 2
           livenessProbe:
             httpGet:
-              path: /health
+              path: /
               port: http
-            initialDelaySeconds: 36
+            initialDelaySeconds: 60
             periodSeconds: 5
             failureThreshold: 5
             timeoutSeconds: 3

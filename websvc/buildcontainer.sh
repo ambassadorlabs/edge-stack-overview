@@ -1,7 +1,6 @@
 #! /usr/bin/env bash
 
-pack build thedevelopnik/es-overview-websvc \
-  --env "someenv=somethingelse" \
+pack build "thedevelopnik/es-overview-websvc:$1" \
   --creation-time now \
   --builder heroku/buildpacks:20 \
   --buildpack heroku/nodejs \

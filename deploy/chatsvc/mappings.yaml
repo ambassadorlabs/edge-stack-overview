@@ -1,0 +1,31 @@
+---
+apiVersion: getambassador.io/v3alpha1
+kind:  Mapping
+metadata:
+  name:  chatsvc-mapping
+  labels:
+    app.kubernetes.io/name: chatsvc
+    app.kubernetes.io/instance: 0.1.0
+spec:
+  hostname: chatsvc.thedevelopnik.com
+  prefix: /
+  service: "chatsvc.default:3000"
+  resolver: endpoint
+---
+apiVersion: getambassador.io/v3alpha1
+kind:  Mapping
+metadata:
+  name:  chatsvc-socket-mapping
+  labels:
+    app.kubernetes.io/name: chatsvc
+    app.kubernetes.io/instance: 0.1.0
+spec:
+  hostname: chatsvc.thedevelopnik.com
+  prefix: /ws
+  service: "chatsvc.default:3000"
+  allow_upgrade:
+    - websocket
+  resolver: endpoint
+  load_balancer:
+    policy: maglev
+    source_ip: true
