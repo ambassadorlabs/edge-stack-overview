@@ -48,7 +48,7 @@ spec:
             runAsNonRoot: true
             runAsUser: 1000
             runAsGroup: 3000
-          image: "index.docker.io/thedevelopnik/es-overview-websvc:af244e8dc9d584d0d173cd9476fbfd681c3f4d1c"
+          image: "index.docker.io/thedevelopnik/es-overview-websvc:c001a56e3c5d57f61ff3c10e47ed13752f695bb3"
           imagePullPolicy: Always
           env:
             - name: VUE_APP_CHATSVC_HOST
