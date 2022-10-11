@@ -1,0 +1,49 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chatsvc
+  labels:
+    app.kubernetes.io/name: chatsvc
+    app.kubernetes.io/instance: 0.1.0
+  annotations:
+    a8r.io/description: "Primary service for chatsvc pods"
+    a8r.io/owner: "Dave Sudia"
+    a8r.io/repository: "https://github.com/ambassadorlabs/edge-stack-overview"
+    a8r.io/rollouts.scm.url: https://github.com/ambassador-labs/edge-stack-overview.git
+    a8r.io/rollouts.scm.path: deploy/chatsvc
+    a8r.io/rollouts.scm.branch: main
+    a8r.io/rollouts.image-repo.type: docker
+    a8r.io/rollouts.image-repo.name: thedevelopnik/es-overview-chatsvc
+    a8r.io/rollouts.deployment: chatsvc
+    a8r.io/rollouts.mappings: chatsvc-mapping
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: chatsvc
+    app.kubernetes.io/instance: 0.1.0
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chatsvc-canary
+  labels:
+    app.kubernetes.io/name: chatsvc
+    app.kubernetes.io/instance: 0.1.0
+  annotations:
+    a8r.io/description: "Canary service for chatsvc pods"
+    a8r.io/owner: "Dave Sudia"
+    a8r.io/repository: "https://github.com/ambassadorlabs/edge-stack-overview"
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: chatsvc
+    app.kubernetes.io/instance: 0.1.0

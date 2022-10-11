@@ -1,0 +1,13 @@
+{
+    "name": "edge-stack-overview-iac",
+    "main": "index.ts",
+    "devDependencies": {
+        "@types/node": "^14"
+    },
+    "dependencies": {
+        "@pulumi/cloudflare": "^4.12.1",
+        "@pulumi/kubernetes": "^3.21.4",
+        "@pulumi/kubernetesx": "^0.1.5",
+        "@pulumi/pulumi": "^3.0.0"
+    }
+}

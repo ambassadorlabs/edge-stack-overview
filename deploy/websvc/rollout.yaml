@@ -1,0 +1,83 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: websvc
+  labels:
+    app.kubernetes.io/name: websvc
+    app.kubernetes.io/instance: 0.1.0
+  annotations:
+    getambassador.io/rolloutId: ee7b914d-56f1-4450-8bd1-0c1214464045
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  strategy:
+    canary:
+      maxSurge: 1
+      canaryService: websvc-canary
+      stableService: websvc
+      trafficRouting:
+        ambassador:
+          mappings:
+            - websvc-mapping
+      steps:
+        - setWeight: 100
+        - pause:
+          duration: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: websvc
+      app.kubernetes.io/instance: 0.1.0
+  template:
+    metadata:
+      annotations:
+        'getambassador.io/inject-traffic-agent': enabled
+      labels:
+        app.kubernetes.io/name: websvc
+        app.kubernetes.io/instance: 0.1.0
+    spec:
+      serviceAccountName: websvc
+      securityContext:
+        fsGroup: 2000
+      containers:
+        - name: websvc
+          securityContext:
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 1000
+            runAsGroup: 3000
+          image: "index.docker.io/thedevelopnik/es-overview-websvc:latest"
+          imagePullPolicy: ALWAYS
+          command:
+            - web
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          startupProbe:
+            httpGet:
+              path: /health
+              port: http
+            failureThreshold: 10
+            periodSeconds: 6
+            timeoutSeconds: 1
+            successThreshold: 1
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 18
+            periodSeconds: 3
+            failureThreshold: 2
+            timeoutSeconds: 2
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 36
+            periodSeconds: 5
+            failureThreshold: 5
+            timeoutSeconds: 3
+            successThreshold: 1
