@@ -11,3 +11,15 @@ spec:
   prefix: /
   service: "websvc.default:8080"
   resolver: endpoint
+---
+apiVersion: getambassador.io/v3alpha1
+kind:  Mapping
+metadata:
+  name:  websvc-catchall-mapping
+  labels:
+    app.kubernetes.io/name: websvc
+    app.kubernetes.io/instance: 0.1.0
+spec:
+  prefix: /
+  service: "websvc.default:8080"
+  resolver: endpoint
