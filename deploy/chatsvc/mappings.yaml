@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/instance: 0.1.0
 spec:
   hostname: api.thedevelopnik.com
-  prefix: /chatsvc
+  prefix: /chatsvc/
   service: "chatsvc.default:3000"
   resolver: endpoint
 ---
@@ -22,6 +22,7 @@ metadata:
 spec:
   hostname: api.thedevelopnik.com
   prefix: /chatsvc/ws
+  rewrite: /ws
   service: "chatsvc.default:3000"
   allow_upgrade:
     - websocket

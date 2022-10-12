@@ -8,5 +8,5 @@ metadata:
     app.kubernetes.io/instance: 0.1.0
 spec:
   hostname: api.thedevelopnik.com
-  prefix: /usersvc
+  prefix: /usersvc/
   service: "usersvc.default:4000"
