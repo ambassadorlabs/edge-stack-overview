@@ -10,7 +10,7 @@ metadata:
     a8r.io/description: "Primary service for chatsvc pods"
     a8r.io/owner: "Dave Sudia"
     a8r.io/repository: "https://github.com/ambassadorlabs/edge-stack-overview"
-    a8r.io/rollouts.scm.url: https://github.com/ambassador-labs/edge-stack-overview.git
+    a8r.io/rollouts.scm.url: https://github.com/ambassadorlabs/edge-stack-overview.git
     a8r.io/rollouts.scm.path: deploy/chatsvc
     a8r.io/rollouts.scm.branch: main
     a8r.io/rollouts.image-repo.type: dockerhub
