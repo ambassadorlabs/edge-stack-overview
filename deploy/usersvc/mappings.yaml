@@ -10,3 +10,14 @@ spec:
   hostname: api.thedevelopnik.com
   prefix: /usersvc
   service: "usersvc.default:4000"
+---
+apiVersion: getambassador.io/v3alpha1
+kind:  Mapping
+metadata:
+  name:  usersvc-health-mapping
+  labels:
+    app.kubernetes.io/name: usersvc
+    app.kubernetes.io/instance: 0.1.0
+spec:
+  prefix: /usersvc
+  service: "usersvc.default:4000"
