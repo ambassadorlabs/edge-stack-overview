@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   annotations:
-    getambassador.io/rolloutId: d63ec4cf-6c25-47fc-a8f4-f0e0578a4b9e
+    getambassador.io/rolloutId: 6dbab8a8-85ce-4ccc-92b0-b2e4e189f29e
   creationTimestamp: null
   labels:
     app.kubernetes.io/instance: 0.1.0
@@ -52,7 +52,7 @@ spec:
       containers:
       - command:
         - web
-        image: thedevelopnik/es-overview-usersvc:bc4812a3a615b1c1ed9d2d3f3a1978ad1816d873
+        image: thedevelopnik/es-overview-usersvc:c1c13c27deaf2f8a5ef0db0a5c8fdde6be82ed3d
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 5
