@@ -13,10 +13,10 @@ metadata:
     a8r.io/rollouts.scm.url: https://github.com/ambassador-labs/edge-stack-overview.git
     a8r.io/rollouts.scm.path: deploy/chatsvc
     a8r.io/rollouts.scm.branch: main
-    a8r.io/rollouts.image-repo.type: docker
+    a8r.io/rollouts.image-repo.type: dockerhub
     a8r.io/rollouts.image-repo.name: thedevelopnik/es-overview-chatsvc
     a8r.io/rollouts.deployment: chatsvc
-    a8r.io/rollouts.mappings: chatsvc-mapping
+    a8r.io/rollouts.mappings: chatsvc-mapping,chatsvc-socket-mapping
 spec:
   type: ClusterIP
   ports:

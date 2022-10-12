@@ -13,7 +13,7 @@ metadata:
     a8r.io/rollouts.scm.url: https://github.com/ambassador-labs/edge-stack-overview.git
     a8r.io/rollouts.scm.path: deploy/usersvc
     a8r.io/rollouts.scm.branch: main
-    a8r.io/rollouts.image-repo.type: docker
+    a8r.io/rollouts.image-repo.type: dockerhub
     a8r.io/rollouts.image-repo.name: thedevelopnik/es-overview-usersvc
     a8r.io/rollouts.deployment: usersvc
     a8r.io/rollouts.mappings: usersvc-mapping
