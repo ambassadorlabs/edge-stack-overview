@@ -1,7 +1,7 @@
 import * as cloudflare from '@pulumi/cloudflare'
 import config from '../config'
 import * as ambassador from '../ambassador'
-import { websvcSubdomain, usersvcSubdomain, chatsvcSubdomain } from '../consts'
+import { websvcSubdomain, apiSubdomain, usersvcSubdomain, chatsvcSubdomain } from '../consts'
 import * as ambassadorCRDs from '../crds/ambassador/index'
 import * as cluster from '../cluster'
 
@@ -14,6 +14,28 @@ export const wildcardHost = new ambassadorCRDs.getambassador.v3alpha1.Host('wild
     hostname: '*.thedevelopnik.com',
   },
 }, { provider: cluster.provider, dependsOn: ambassador.chart })
+
+export const apiDns = new cloudflare.Record('api-thedevelopnik-com', {
+  name: 'api',
+  zoneId: config.requireSecret('cloudflareZoneId'),
+  type: 'A',
+  value: ambassador.publicIp,
+  ttl: 1,
+  proxied: true,
+})
+
+export const apiHost = new ambassadorCRDs.getambassador.v3alpha1.Host(apiSubdomain, {
+  metadata: {
+    name: apiSubdomain,
+    namespace: 'default',
+  },
+  spec: {
+    hostname: `${apiSubdomain}.thedevelopnik.com`,
+    acmeProvider: {
+      email: config.requireSecret("acmeEmailTwo"),
+    }
+  }
+}, { provider: cluster.provider, dependsOn: [ ambassador.chart, apiDns ] })
 
 export const demoDns = new cloudflare.Record('esdemo-thedevelopnik-com', {
   name: websvcSubdomain,

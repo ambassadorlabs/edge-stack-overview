@@ -8,6 +8,8 @@ cluster.provider
 ambassador.chart
 ambassador.k8sEndpointResolver
 cloudflare.wildcardHost
+cloudflare.apiDns
+cloudflare.apiHost
 cloudflare.demoDns
 cloudflare.webHost
 cloudflare.chatDns

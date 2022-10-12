@@ -7,7 +7,6 @@ metadata:
     app.kubernetes.io/name: usersvc
     app.kubernetes.io/instance: 0.1.0
 spec:
-  hostname: usersvc.thedevelopnik.com
-  prefix: /
+  hostname: api.thedevelopnik.com
+  prefix: /usersvc
   service: "usersvc.default:4000"
-  resolver: endpoint
