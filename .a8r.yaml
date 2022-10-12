@@ -3,3 +3,7 @@ k8s_config:
   cluster_info:
     cluster_id: d1cd5ca9-716a-5883-9aa8-c3c93834347d
     cluster_name: daveops-demo
+- manifest_path: /deploy/
+  cluster_info:
+    cluster_id: d1cd5ca9-716a-5883-9aa8-c3c93834347d
+    cluster_name: daveops-demo
